@@ -16,7 +16,7 @@ Dockerfile
 .env.production
 npm-debug.log
 yarn-error.log
-
+#s
 # Tests
 /tests
 phpunit.xml
