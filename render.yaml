@@ -28,11 +28,11 @@ services:
       - key: DB_PASSWORD
         sync: false
       - key: FRONTEND_URL
-        value: https://fronteencuvadora2-syta.onrender.com
+        value: https://fronteencuvadora-qxys.vercel.app
       - key: ALLOWED_ORIGINS
-        value: https://fronteencuvadora2-syta.onrender.com
+        value: https://fronteencuvadora-qxys.vercel.app
       - key: SANCTUM_STATEFUL_DOMAINS
-        value: fronteencuvadora2-syta.onrender.com
+        value: fronteencuvadora-qxys.vercel.app
       - key: SESSION_DRIVER
         value: cookie
       - key: QUEUE_CONNECTION
