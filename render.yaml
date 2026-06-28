@@ -1,84 +1,47 @@
 services:
-  # ─── Backend (Laravel) ────────────────────────────────────────
   - type: web
     name: incubadora-backend
     env: php
-    buildCommand: >
-      composer install --no-dev
-      && npm install
-      && npm run build
-      && php artisan migrate --force
-      && php artisan config:cache
-      && php artisan route:cache
-    startCommand: >
-      mkdir -p /var/data
-      && rm -rf storage/app/public
-      && ln -sfn /var/data storage/app/public
-      && php artisan storage:link --force
-      && vendor/bin/heroku-php-apache2 public/
-    disk:
-      name: incubadora-storage
-      mountPath: /var/data
-      sizeGB: 1
+    buildCommand: composer install --no-dev --optimize-autoloader
+    startCommand: php artisan migrate --force --seed && php artisan config:clear && vendor/bin/heroku-php-apache2 public/
     envVars:
-      # App
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
-        value: "false"
+        value: "true"
       - key: APP_KEY
         generateValue: true
       - key: APP_URL
         value: https://backenencuvadora-2.onrender.com
-      # Database (PostgreSQL — Render lo inyecta automáticamente al linked DB)
+      - key: APP_NAME
+        value: UniIncubadora
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
-        fromDatabase:
-          name: incubadora-db
-          property: host
+        sync: false
       - key: DB_PORT
-        fromDatabase:
-          name: incubadora-db
-          property: port
+        value: "5432"
       - key: DB_DATABASE
-        fromDatabase:
-          name: incubadora-db
-          property: database
+        sync: false
       - key: DB_USERNAME
-        fromDatabase:
-          name: incubadora-db
-          property: user
+        sync: false
       - key: DB_PASSWORD
-        fromDatabase:
-          name: incubadora-db
-          property: password
-      # Session / Cache / Queue
-      - key: SESSION_DRIVER
-        value: database
-      - key: QUEUE_CONNECTION
-        value: database
-      - key: CACHE_STORE
-        value: database
-      # CORS & Sanctum
+        sync: false
       - key: FRONTEND_URL
         value: https://fronteencuvadora.onrender.com
       - key: ALLOWED_ORIGINS
         value: https://fronteencuvadora.onrender.com
       - key: SANCTUM_STATEFUL_DOMAINS
         value: fronteencuvadora.onrender.com
-      # Filesystem
+      - key: SESSION_DRIVER
+        value: cookie
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: CACHE_STORE
+        value: file
       - key: FILESYSTEM_DISK
         value: local
-      # Logging
       - key: LOG_CHANNEL
         value: stack
       - key: LOG_LEVEL
-        value: error
-
-  # ─── Base de datos PostgreSQL ──────────────────────────────────
-  - type: postgresql
-    name: incubadora-db
-    plan: free
-    databaseName: incubadora
-    ipAllowList: []
+        value: debug

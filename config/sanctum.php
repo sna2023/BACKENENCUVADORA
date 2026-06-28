@@ -4,6 +4,8 @@ use Laravel\Sanctum\Sanctum;
 
 return [
 
+    'token_model' => App\Models\TokenAcceso::class,
+
     /*
     |--------------------------------------------------------------------------
     | Stateful Domains
