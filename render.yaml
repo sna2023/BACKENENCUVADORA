@@ -28,11 +28,11 @@ services:
       - key: DB_PASSWORD
         value: npg_KLgGlT5j1WqN
       - key: FRONTEND_URL
-        value: https://fronteencuvadora-qxys.vercel.app
+        value: https://incubadoraunesum.com
       - key: ALLOWED_ORIGINS
-        value: https://fronteencuvadora-qxys.vercel.app
+        value: https://incubadoraunesum.com,https://www.incubadoraunesum.com,https://fronteencuvadora-qxys.vercel.app
       - key: SANCTUM_STATEFUL_DOMAINS
-        value: fronteencuvadora-qxys.vercel.app
+        value: incubadoraunesum.com,www.incubadoraunesum.com,fronteencuvadora-qxys.vercel.app
       - key: SESSION_DRIVER
         value: cookie
       - key: QUEUE_CONNECTION
