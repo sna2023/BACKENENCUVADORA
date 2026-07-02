@@ -14,20 +14,10 @@ use App\Http\Controllers\SeguimientoController;
 use App\Http\Controllers\AsesoriaController;
 use App\Http\Controllers\EmprendedorController;
 use App\Http\Controllers\NotificacionController;
-use App\Http\Controllers\GoogleAuthController;
-use App\Http\Controllers\FirebaseController;
 
 // Rutas públicas
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login',    [AuthController::class, 'login']);
-
-// Firebase Auth
-Route::post('/auth/firebase/login', [FirebaseController::class, 'loginWithFirebase']);
-
-// Google OAuth
-Route::get('/auth/google',          [GoogleAuthController::class, 'redirect']);
-Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
-Route::post('/auth/google/login',   [GoogleAuthController::class, 'loginWithToken']);
 
 // Rutas protegidas
 Route::middleware('auth:sanctum')->group(function () {

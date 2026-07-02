@@ -104,15 +104,6 @@ class AdminController extends Controller
     {
         $this->authorizeAdmin($request);
 
-        $correo = $request->input('correo', '');
-        $domain = explode('@', $correo)[1] ?? '';
-
-        if (!in_array($domain, ['unesum.edu.ec'])) {
-            return response()->json([
-                'message' => 'Solo se permiten correos institucionales UNESUM (@unesum.edu.ec).',
-            ], 422);
-        }
-
         $validated = $request->validate([
             'nombre' => 'required|string|max:150',
             'correo' => 'required|email|max:150|unique:usuarios,correo',

@@ -10,29 +10,21 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Migrar correos viejos @uniincubadora.edu.ec a @unesum.edu.ec
-        User::where('correo', 'admin@uniincubadora.edu.ec')
-            ->update(['correo' => 'admin@unesum.edu.ec']);
-        User::where('correo', 'mentor@uniincubadora.edu.ec')
-            ->update(['correo' => 'mentor@unesum.edu.ec']);
-        User::where('correo', 'estudiante@uniincubadora.edu.ec')
-            ->update(['correo' => 'estudiante@unesum.edu.ec']);
-
         $usuarios = [
             [
-                'correo' => 'admin@unesum.edu.ec',
+                'correo' => 'admin@gmail.com',
                 'nombre' => 'Administrador',
                 'clave'  => 'admin1234',
                 'rol'    => 'administrador',
             ],
             [
-                'correo' => 'mentor@unesum.edu.ec',
+                'correo' => 'mentor@gmail.com',
                 'nombre' => 'Carlos Mentor',
                 'clave'  => 'mentor1234',
                 'rol'    => 'mentor',
             ],
             [
-                'correo' => 'estudiante@unesum.edu.ec',
+                'correo' => 'emprendedor@gmail.com',
                 'nombre' => 'Maria Emprendedora',
                 'clave'  => 'estudiante1234',
                 'rol'    => 'emprendedor',
